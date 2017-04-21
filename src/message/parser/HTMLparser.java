@@ -13,12 +13,12 @@ import org.w3c.dom.NodeList;
 public class HTMLparser {
 
     public String parse(String html, String cssQuery) {
-
         Document document = Jsoup.parse(html);
-        Elements divs = document.select(cssQuery);
-        for (Element div : divs) {
-            System.out.println(div.ownText());
+        Elements elements = document.select(cssQuery);
+        String parsedHTML = "";
+        for (Element element : elements) {
+            parsedHTML += element.ownText();
         }
-        return null;
+        return parsedHTML;
     }
 }
