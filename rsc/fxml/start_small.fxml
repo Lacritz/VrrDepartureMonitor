@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="764.0" prefWidth="1024.0" style="-fx-background-color: GREY;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="62.0" layoutY="68.0" style="-fx-border-color: BLACK;" AnchorPane.bottomAnchor="367.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="512.0" AnchorPane.topAnchor="30.0">
+         <children>
+            <TextFlow layoutX="141.0" layoutY="185.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-=HALTESTELLE 1=-" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="2.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Separator layoutX="11.0" layoutY="30.0" prefWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="72.0" layoutY="78.0" style="-fx-border-color: BLACK;" AnchorPane.bottomAnchor="367.0" AnchorPane.leftAnchor="512.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+         <children>
+            <TextFlow layoutX="125.0" layoutY="157.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-=HALTESTELLE 2=-" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="2.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Separator layoutX="21.0" layoutY="40.0" prefWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0" />
+         </children>
+      </AnchorPane>
+      <ToolBar maxHeight="30.0" minHeight="30.0" prefHeight="30.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </ToolBar>
+      <AnchorPane layoutX="53.0" layoutY="455.0" style="-fx-border-color: BLACK;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="512.0" AnchorPane.topAnchor="397.0">
+         <children>
+            <TextFlow layoutX="141.0" layoutY="185.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0" />
+            <Text layoutX="163.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-=HALTESTELLE 3=-" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="2.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Separator prefWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="63.0" layoutY="465.0" style="-fx-border-color: BLACK;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="512.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="397.0">
+         <children>
+            <TextFlow layoutX="141.0" layoutY="185.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="35.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="-=HALTESTELLE 4=-" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="2.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Separator prefWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
