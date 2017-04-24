@@ -8,6 +8,12 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 
 public class Main extends Application {
 
@@ -25,7 +31,18 @@ public class Main extends Application {
         //primaryStage.setWidth(primaryScreenBounds.getWidth());
         //primaryStage.setHeight(primaryScreenBounds.getHeight());
 
+        Properties properties = getProperties();
+
         primaryStage.show();
+    }
+
+    private Properties getProperties() throws IOException {
+        Properties properties = new Properties();
+        BufferedInputStream stream = new BufferedInputStream(new FileInputStream(getClass().getResource
+                ("/properties/properties").toString()));
+        properties.load(stream);
+        stream.close();
+        return properties;
     }
 
 
