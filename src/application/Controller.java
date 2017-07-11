@@ -23,6 +23,7 @@ public class Controller {
 
     @FXML
     public void initialize() throws IOException {
+        System.out.println("test");
         loop();
     }
 
@@ -33,17 +34,19 @@ public class Controller {
         headingStop3.setText(properties.getProperty("thirdStop_Name") + ":");
         headingStop4.setText(properties.getProperty("fourthStop_Name") + ":");
 
-        Text text =
-                new Text(optimizeLayout(HTMLparser.getInstance().parse(URLReader.getInstance().read(new URL(properties
-                        .getProperty
-                                ("firstStop_URL"))), "div")));
+        Text text = new Text(optimizeLayout(
+                HTMLparser.getInstance()
+                .parse(URLReader.getInstance()
+                        .read(new URL(properties
+                        .getProperty("firstStop_URL"))), "div")));
         text.setFill(Color.WHITE);
         text.setFont(Font.font("System", 24));
         textFlowStop1.getChildren().addAll(text);
     }
 
-    @Contract(pure = true)
+
     private String optimizeLayout(String s) {
+        System.out.println(s);
         return s;
     }
 
