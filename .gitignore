@@ -97,3 +97,5 @@ local.properties
 ### Gradle ###
 .gradle
 build/
+*.project
+*.classpath
