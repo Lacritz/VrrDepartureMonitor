@@ -8,7 +8,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import message.parser.HTMLparser;
 import message.urlreader.URLReader;
-import org.jetbrains.annotations.Contract;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
