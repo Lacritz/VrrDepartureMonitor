@@ -12,6 +12,7 @@ import message.urlreader.URLReader;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 
@@ -75,8 +76,9 @@ public class Controller {
 
 
     private String optimizeLayout(String s) {
-        System.out.println(s);
-        return s;
+    	String out = Charset.forName("UTF-8").decode(Charset.forName("Windows-1252").encode(s)).toString();
+        System.out.println(out);
+        return out;
     }
 
 
