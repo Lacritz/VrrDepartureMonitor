@@ -41,6 +41,36 @@ public class Controller {
         text.setFill(Color.WHITE);
         text.setFont(Font.font("System", 24));
         textFlowStop1.getChildren().addAll(text);
+        
+        
+        text = new Text(optimizeLayout(
+                HTMLparser.getInstance()
+                .parse(URLReader.getInstance()
+                        .read(new URL(properties
+                        .getProperty("secondStop_URL"))), "div")));
+        text.setFill(Color.WHITE);
+        text.setFont(Font.font("System", 24));
+        textFlowStop2.getChildren().addAll(text);
+
+        
+        text = new Text(optimizeLayout(
+                HTMLparser.getInstance()
+                .parse(URLReader.getInstance()
+                        .read(new URL(properties
+                        .getProperty("thirdStop_URL"))), "div")));
+        text.setFill(Color.WHITE);
+        text.setFont(Font.font("System", 24));
+        textFlowStop3.getChildren().addAll(text);
+
+        
+        text = new Text(optimizeLayout(
+                HTMLparser.getInstance()
+                .parse(URLReader.getInstance()
+                        .read(new URL(properties
+                        .getProperty("fourthStop_URL"))), "div")));
+        text.setFill(Color.WHITE);
+        text.setFont(Font.font("System", 24));
+        textFlowStop4.getChildren().addAll(text);
     }
 
 

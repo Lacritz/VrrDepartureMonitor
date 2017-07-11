@@ -6,9 +6,9 @@ firstStop_Name  =     Uni. Ost
 secondStop_URL  =     https://vrrf.finalrewind.org/Düsseldorf/Uni Mitte.html?frontend=html
 secondStop_Name =     Uni. Mitte
 
-thirdStop_URL   =     https://vrrf.finalrewind.org/Düsseldorf/Uni Nord/ChristophstraÃŸe.html?frontend=html
+thirdStop_URL   =     https://vrrf.finalrewind.org/Düsseldorf/Uni Nord/Christophstraße.html?frontend=html
 thirdStop_Name  =     Uni. Nord
 
-fourthStop_URL  =     https://vrrf.finalrewind.org/Düsseldorf/Bilk S.png?frontend=png&amp;offset=15&amp;line=S
+fourthStop_URL  =     https://vrrf.finalrewind.org/Düsseldorf/Bilk S.html?frontend=html
 fourthStop_Name =     Bilk S
 
