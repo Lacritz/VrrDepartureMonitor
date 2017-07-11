@@ -76,7 +76,7 @@ public class Controller {
 
 
     private String optimizeLayout(String s) {
-    	String out = Charset.forName("UTF-8").decode(Charset.forName("Windows-1252").encode(s)).toString();
+    	String out = Charset.forName("UTF-8").decode(Charset.defaultCharset().encode(s)).toString();
         System.out.println(out);
         return out;
     }
