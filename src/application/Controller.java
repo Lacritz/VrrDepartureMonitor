@@ -8,6 +8,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import message.parser.HTMLparser;
 import message.urlreader.URLReader;
+import org.jetbrains.annotations.Contract;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -22,19 +23,18 @@ public class Controller {
 
     @FXML
     public void initialize() throws IOException {
-        loop()
+        loop();
     }
 
     private void loop() throws IOException {
         Properties properties = getProperties();
-
         headingStop1.setText(properties.getProperty("firstStop_Name") + ":");
         headingStop2.setText(properties.getProperty("secondStop_Name") + ":");
         headingStop3.setText(properties.getProperty("thirdStop_Name") + ":");
         headingStop4.setText(properties.getProperty("fourthStop_Name") + ":");
 
         Text text =
-                    new Text(optimizeLayout(HTMLparser.getInstance().parse(URLReader.getInstance().read(new URL(properties
+                new Text(optimizeLayout(HTMLparser.getInstance().parse(URLReader.getInstance().read(new URL(properties
                         .getProperty
                                 ("firstStop_URL"))), "div")));
         text.setFill(Color.WHITE);
@@ -42,8 +42,8 @@ public class Controller {
         textFlowStop1.getChildren().addAll(text);
     }
 
+    @Contract(pure = true)
     private String optimizeLayout(String s) {
-
         return s;
     }
 

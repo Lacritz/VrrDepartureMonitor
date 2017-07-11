@@ -17,17 +17,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/start_medium.fxml"));
-
-
         primaryStage.setTitle("VRR_Monitor");
         primaryStage.setScene(new Scene(root));
-        //primaryStage.setX(primaryScreenBounds.getMinX());
-        //primaryStage.setY(primaryScreenBounds.getMinY());
-        //primaryStage.setWidth(primaryScreenBounds.getWidth());
-        //primaryStage.setHeight(primaryScreenBounds.getHeight());
-
 
         primaryStage.show();
     }
