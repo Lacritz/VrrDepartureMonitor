@@ -13,7 +13,7 @@ thirdStop_URL         =     https://vrrf.finalrewind.org/D%C3%BCsseldorf/Uni%20N
 thirdReplacement_URL  =     https://vrrf.finalrewind.org/Uni%20Nord/Christophstra%C3%9Fe,%20D%C3%BCsseldorf.html?frontend=html&backend=db&no_lines=10&offset=10
 
 fourthStop_Name       =     Bilk S
-fourthStop_URL        =     https://vrrf.finalrewind.org/D%C3%BCsseldorf/Bilk%20S.html?frontend=html&no_lines=10&offset=15&line=S&platform=1%2C+2
-fourthReplacement_URL =     https://vrrf.finalrewind.org/D%C3%BCsseldorf-Bilk.html?frontend=html&backend=db&no_lines=10&offset=15&line=S&platform=1%2C+2
+fourthReplacement_URL =     https://vrrf.finalrewind.org/D%C3%BCsseldorf/Bilk%20S.html?frontend=html&no_lines=10&offset=15&line=S&platform=1%2C+2
+fourthStop_URL        =     https://vrrf.finalrewind.org/D%C3%BCsseldorf-Bilk.html?frontend=html&backend=db&no_lines=10&offset=15&line=S&platform=1%2C+2
 
 

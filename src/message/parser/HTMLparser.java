@@ -30,7 +30,7 @@ public class HTMLparser {
         int i = 0;
         for (Element element : elements) {
 
-            parsedHTML += element.ownText() + " ";
+            parsedHTML += element.ownText() + "#";
             if (i % 4 == 0) parsedHTML += "\n";
             i++;
         }

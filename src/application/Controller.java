@@ -20,17 +20,29 @@ import java.util.Properties;
 
 public class Controller {
     @FXML TextFlow textFlowStop1, textFlowStop2, textFlowStop3, textFlowStop4;
+    @FXML TextFlow textFlowLine1, textFlowLine2, textFlowLine3, textFlowLine4;
+    @FXML TextFlow textFlowTime1, textFlowTime2, textFlowTime3, textFlowTime4;
+
     @FXML Text headingStop1, headingStop2, headingStop3, headingStop4;
     @FXML ToolBar toolBar;
     Properties properties;
+    Font font;
 
     @FXML
     public void initialize() throws IOException {
+        font = Font.loadFont(getClass().getResource("/font/VRRR.ttf").toString(), 50);
         properties = getProperties();
         headingStop1.setText(properties.getProperty("firstStop_Name") + ":");
+        headingStop1.setFont(font);
+
         headingStop2.setText(properties.getProperty("secondStop_Name") + ":");
+        headingStop2.setFont(font);
+
         headingStop3.setText(properties.getProperty("thirdStop_Name") + ":");
+        headingStop3.setFont(font);
+
         headingStop4.setText(properties.getProperty("fourthStop_Name") + ":");
+        headingStop4.setFont(font);
         setUpThread();
     }
 
@@ -50,63 +62,85 @@ public class Controller {
     }
 
     private void loop(Properties properties) throws IOException {
+        setUpTextOnTextFlow(textFlowLine1, textFlowStop1, textFlowTime1, 1);
+        setUpTextOnTextFlow(textFlowLine2, textFlowStop2, textFlowTime2, 2);
+        setUpTextOnTextFlow(textFlowLine3, textFlowStop3, textFlowTime3, 3);
+        setUpTextOnTextFlow(textFlowLine4, textFlowStop4, textFlowTime4, 4);
+    }
 
-        Text text1 = new Text(optimizeLayout(
-                HTMLparser.getInstance()
-                        .parse(URLReader.getInstance()
-                                .read(new URL(properties
-                                        .getProperty("firstStop_URL") + "&backend=db")), "div")));
-        text1.setFill(Color.WHITE);
-        text1.setFont(Font.font("System", 24));
+
+    public void setUpTextOnTextFlow(TextFlow line, TextFlow flow, TextFlow time, int stop) throws
+            IOException {
+        String property;
+        switch (stop) {
+            case 1:
+                property = "firstStop_URL";
+                break;
+            case 2:
+                property = "secondStop_URL";
+                break;
+            case 3:
+                property = "thirdStop_URL";
+                break;
+            case 4:
+                property = "fourthStop_URL";
+                break;
+            default:
+                property = "";
+                break;
+        }
+        Text[] text = optimizeLayout(HTMLparser.getInstance()
+                .parse(URLReader.getInstance()
+                        .read(new URL(properties
+                                .getProperty(property))), "div"));
+
+
         Platform.runLater(() -> {
-            textFlowStop1.getChildren().clear();
-            textFlowStop1.getChildren().addAll(text1);
-        });
+            line.getChildren().clear();
+            line.getChildren().addAll(text[0]);
 
-        Text text2 = new Text(optimizeLayout(
-                HTMLparser.getInstance()
-                        .parse(URLReader.getInstance()
-                                .read(new URL(properties
-                                        .getProperty("secondStop_URL") + "&backend=db")), "div")));
-        text2.setFill(Color.WHITE);
-        text2.setFont(Font.font("System", 24));
-        Platform.runLater(() -> {
-            textFlowStop2.getChildren().clear();
-            textFlowStop2.getChildren().addAll(text2);
-        });
+            flow.getChildren().clear();
+            flow.getChildren().addAll(text[1]);
 
-
-        Text text3 = new Text(optimizeLayout(
-                HTMLparser.getInstance()
-                        .parse(URLReader.getInstance()
-                                .read(new URL(properties
-                                        .getProperty("thirdStop_URL"))), "div")));
-        text3.setFill(Color.WHITE);
-        text3.setFont(Font.font("System", 24));
-        Platform.runLater(() -> {
-            textFlowStop3.getChildren().clear();
-            textFlowStop3.getChildren().addAll(text3);
-        });
-
-
-        Text text4 = new Text(optimizeLayout(
-                HTMLparser.getInstance()
-                        .parse(URLReader.getInstance()
-                                .read(new URL(properties
-                                        .getProperty("fourthStop_URL"))), "div")));
-        text4.setFill(Color.WHITE);
-        text4.setFont(Font.font("System", 24));
-        Platform.runLater(() -> {
-            textFlowStop4.getChildren().clear();
-            textFlowStop4.getChildren().addAll(text4);
+            time.getChildren().clear();
+            time.getChildren().addAll(text[2]);
         });
     }
 
 
-    private String optimizeLayout(String s) {
+    private Text[] optimizeLayout(String s) {
         String out = Charset.forName("UTF-8").decode(Charset.defaultCharset().encode(s)).toString();
-        System.out.println(out);
-        return out;
+
+        String line = "";
+        String stop = "";
+        String time = "";
+        for (String string : s.split(System.lineSeparator())) {
+            try {
+                line += string.split("#")[1] + "\n";
+                if (!(string.split("#")[2].length() <= 17)) {
+                    stop += string.split("#")[2].substring(0, 17) + "\n";
+                } else {
+                    stop += string.split("#")[2] + "\n";
+                }
+                time += string.split("#")[3] + "\n";
+            } catch (ArrayIndexOutOfBoundsException e) {
+                continue;
+            }
+        }
+
+        Text[] text = new Text[3];
+        text[0] = new Text(line);
+        text[1] = new Text(stop);
+        text[2] = new Text(time);
+
+        System.out.println(stop);
+
+        text[0].setFill(Color.WHITE);
+        for (Text t : text) {
+            t.setFont(font);
+            t.setFill(Color.rgb(0, 255, 0));
+        }
+        return text;
     }
 
 
