@@ -17,12 +17,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        if(primaryScreenBounds.getWidth() == 1280 && primaryScreenBounds.getHeight() == 1024)
+        if (primaryScreenBounds.getWidth() == 1280 && primaryScreenBounds.getHeight() == 1024)
             primaryStage.setFullScreen(true);
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/start_medium.fxml"));
         primaryStage.setTitle("VRR_Monitor");
         primaryStage.setScene(new Scene(root));
-
         primaryStage.show();
     }
 
