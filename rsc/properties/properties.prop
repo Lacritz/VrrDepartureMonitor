@@ -1,14 +1,14 @@
-#Properties Datei
+ï»¿#Properties Datei
 
-firstStop_URL   =     https://vrrf.finalrewind.org/Düsseldorf/Universitaet%20Ost.html?frontend=html&amp;no_lines=10&amp;offset=5
+firstStop_URL   =     https://vrrf.finalrewind.org/DÃ¼sseldorf/Universitaet%20Ost.html?frontend=html&amp;no_lines=10&amp;offset=5
 firstStop_Name  =     Uni. Ost
 
-secondStop_URL  =     https://vrrf.finalrewind.org/Düsseldorf/Uni Mitte.html?frontend=html
+secondStop_URL  =     https://vrrf.finalrewind.org/DÃ¼sseldorf/Uni Mitte.html?frontend=html
 secondStop_Name =     Uni. Mitte
 
-thirdStop_URL   =     https://vrrf.finalrewind.org/Düsseldorf/Uni Nord/Christophstraße.html?frontend=html
+thirdStop_URL   =     https://vrrf.finalrewind.org/DÃ¼sseldorf/Uni Nord/ChristophstraÃŸe.html?frontend=html
 thirdStop_Name  =     Uni. Nord
 
-fourthStop_URL  =     https://vrrf.finalrewind.org/Düsseldorf/Bilk S.html?frontend=html
+fourthStop_URL  =     https://vrrf.finalrewind.org/DÃ¼sseldorf/Bilk S.html?frontend=html
 fourthStop_Name =     Bilk S
 

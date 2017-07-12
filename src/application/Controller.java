@@ -11,6 +11,7 @@ import message.urlreader.URLReader;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Properties;
@@ -42,7 +43,6 @@ public class Controller {
         text.setFill(Color.WHITE);
         text.setFont(Font.font("System", 24));
         textFlowStop1.getChildren().addAll(text);
-        
         
         text = new Text(optimizeLayout(
                 HTMLparser.getInstance()
@@ -86,7 +86,7 @@ public class Controller {
         Properties properties = new Properties();
         BufferedInputStream stream = new BufferedInputStream(this.getClass().getResourceAsStream
                 ("/properties/properties.prop"));
-        properties.load(stream);
+        properties.load(new InputStreamReader(stream, Charset.forName("UTF-8")));
         stream.close();
         return properties;
     }
