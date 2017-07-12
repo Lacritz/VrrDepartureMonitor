@@ -1,5 +1,6 @@
 package application;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToolBar;
 import javafx.scene.paint.Color;
@@ -47,43 +48,55 @@ public class Controller {
 
     private void loop(Properties properties) throws IOException {
 
-        Text text = new Text(optimizeLayout(
+        Text text1 = new Text(optimizeLayout(
                 HTMLparser.getInstance()
                 .parse(URLReader.getInstance()
                         .read(new URL(properties
                         .getProperty("firstStop_URL"))), "div")));
-        text.setFill(Color.WHITE);
-        text.setFont(Font.font("System", 24));
-        textFlowStop1.getChildren().addAll(text);
+        text1.setFill(Color.WHITE);
+        text1.setFont(Font.font("System", 24));
+        Platform.runLater(() -> {
+        	textFlowStop1.getChildren().clear();
+        	textFlowStop1.getChildren().addAll(text1);
+        	});
         
-        text = new Text(optimizeLayout(
+        Text text2 = new Text(optimizeLayout(
                 HTMLparser.getInstance()
                 .parse(URLReader.getInstance()
                         .read(new URL(properties
                         .getProperty("secondStop_URL"))), "div")));
-        text.setFill(Color.WHITE);
-        text.setFont(Font.font("System", 24));
-        textFlowStop2.getChildren().addAll(text);
+        text2.setFill(Color.WHITE);
+        text2.setFont(Font.font("System", 24));
+        Platform.runLater(() -> {
+        	textFlowStop2.getChildren().clear();
+        	textFlowStop2.getChildren().addAll(text2);
+        	});
 
         
-        text = new Text(optimizeLayout(
+        Text text3 = new Text(optimizeLayout(
                 HTMLparser.getInstance()
                 .parse(URLReader.getInstance()
                         .read(new URL(properties
                         .getProperty("thirdStop_URL"))), "div")));
-        text.setFill(Color.WHITE);
-        text.setFont(Font.font("System", 24));
-        textFlowStop3.getChildren().addAll(text);
+        text3.setFill(Color.WHITE);
+        text3.setFont(Font.font("System", 24));
+        Platform.runLater(() -> {
+        	textFlowStop3.getChildren().clear();
+        	textFlowStop3.getChildren().addAll(text3);
+        	});
 
         
-        text = new Text(optimizeLayout(
+        Text text4 = new Text(optimizeLayout(
                 HTMLparser.getInstance()
                 .parse(URLReader.getInstance()
                         .read(new URL(properties
                         .getProperty("fourthStop_URL"))), "div")));
-        text.setFill(Color.WHITE);
-        text.setFont(Font.font("System", 24));
-        textFlowStop4.getChildren().addAll(text);
+        text4.setFill(Color.WHITE);
+        text4.setFont(Font.font("System", 24));
+        Platform.runLater(() -> {
+        	textFlowStop4.getChildren().clear();
+        	textFlowStop4.getChildren().addAll(text4);
+        	});
     }
 
 
