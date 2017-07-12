@@ -22,6 +22,9 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/start_medium.fxml"));
         primaryStage.setTitle("VRR_Monitor");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setOnCloseRequest(event -> {
+            System.exit(0);
+        });
         primaryStage.show();
     }
 
