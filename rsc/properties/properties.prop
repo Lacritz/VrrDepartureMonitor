@@ -1,18 +1,19 @@
 ﻿#Properties Datei
 
 firstStop_Name        =     Uni. Ost
-firstStop_URL         =     https://vrrf.finalrewind.org/Düsseldorf/Universität Ost.html?frontend=html
-firstReplacement_URL  =     https://vrrf.finalrewind.org/D%C3%BCsseldorf%20Botanischer%20Garten.html?frontend=html&backend=db&line=U
+firstStop_URL         =     https://vrrf.finalrewind.org/D%C3%BCsseldorf/Universitaet%20Ost.html?frontend=html&no_lines=10&offset=5
+firstReplacement_URL  =     https://vrrf.finalrewind.org/Uni%20Ost/Botanischer%20Garten,%20D%C3%BCsseldorf.html?frontend=html&backend=db&no_lines=10&offset=10
 
 secondStop_Name       =     Uni. Mitte
-secondStop_URL        =     https://vrrf.finalrewind.org/Düsseldorf/Uni Mitte.html?frontend=html
-secondReplacement_URL =
+secondStop_URL        =     https://vrrf.finalrewind.org/D%C3%BCsseldorf/Uni%20Mitte.html?frontend=html&no_lines=10&offset=5
+secondReplacement_URL =     https://vrrf.finalrewind.org/Uni%20Nord%20Universit%C3%A4t%20Mitte,%20D%C3%BCsseldorf.html?frontend=html&backend=db&no_lines=10&offset=10
 
 thirdStop_Name        =     Uni. Nord
-thirdStop_URL         =     https://vrrf.finalrewind.org/Düsseldorf/Uni Nord/Christophstraße.html?frontend=html
+thirdStop_URL         =     https://vrrf.finalrewind.org/D%C3%BCsseldorf/Uni%20Nord/Christophstra%C3%9Fe.html?frontend=html&no_lines=10&offset=10
+thirdReplacement_URL  =     https://vrrf.finalrewind.org/Uni%20Nord/Christophstra%C3%9Fe,%20D%C3%BCsseldorf.html?frontend=html&backend=db&no_lines=10&offset=10
 
 fourthStop_Name       =     Bilk S
-fourthStop_URL        =     https://vrrf.finalrewind.org/Düsseldorf/Bilk S.html?frontend=html
-
+fourthStop_URL        =     https://vrrf.finalrewind.org/D%C3%BCsseldorf/Bilk%20S.html?frontend=html&no_lines=10&offset=15&line=S&platform=1%2C+2
+fourthReplacement_URL =     https://vrrf.finalrewind.org/D%C3%BCsseldorf-Bilk.html?frontend=html&backend=db&no_lines=10&offset=15&line=S&platform=1%2C+2
 
 
