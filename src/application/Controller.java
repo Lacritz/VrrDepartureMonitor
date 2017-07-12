@@ -138,7 +138,7 @@ public class Controller {
         text[0].setFill(Color.WHITE);
         for (Text t : text) {
             t.setFont(font);
-            t.setFill(Color.rgb(0, 255, 0));
+            t.setFill(Color.rgb(0, 255, 1));
         }
         return text;
     }
