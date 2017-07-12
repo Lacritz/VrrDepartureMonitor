@@ -21,19 +21,31 @@ public class Controller {
     @FXML TextFlow textFlowStop1, textFlowStop2, textFlowStop3, textFlowStop4;
     @FXML Text headingStop1, headingStop2, headingStop3, headingStop4;
     @FXML ToolBar toolBar;
-
+    Properties properties;
     @FXML
     public void initialize() throws IOException {
         System.out.println("test");
-        loop();
-    }
-
-    private void loop() throws IOException {
-        Properties properties = getProperties();
-        headingStop1.setText(properties.getProperty("firstStop_Name") + ":");
+        properties = getProperties();
+        Runnable task = () -> {
+        	try{
+        		while(true) {
+        			loop(properties);
+        			Thread.sleep(1000);
+        		}
+        	}catch(Exception e) {
+        		e.printStackTrace();
+        	}
+    	};
+    	headingStop1.setText(properties.getProperty("firstStop_Name") + ":");
         headingStop2.setText(properties.getProperty("secondStop_Name") + ":");
         headingStop3.setText(properties.getProperty("thirdStop_Name") + ":");
         headingStop4.setText(properties.getProperty("fourthStop_Name") + ":");
+        Thread t = new Thread(task);
+        t.start();
+        //loop(properties);
+    }
+
+    private void loop(Properties properties) throws IOException {
 
         Text text = new Text(optimizeLayout(
                 HTMLparser.getInstance()
