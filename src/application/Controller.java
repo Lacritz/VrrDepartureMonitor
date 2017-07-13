@@ -114,7 +114,7 @@ public class Controller {
         String line = "";
         String stop = "";
         String time = "";
-        for (String string : s.split(System.lineSeparator())) {
+        for (String string : out.split("\n")) {
             try {
                 line += string.split("#")[1] + "\n";
                 if (!(string.split("#")[2].length() <= 17)) {
@@ -133,7 +133,7 @@ public class Controller {
         text[1] = new Text(stop);
         text[2] = new Text(time);
 
-        System.out.println(stop);
+
 
         text[0].setFill(Color.WHITE);
         for (Text t : text) {
