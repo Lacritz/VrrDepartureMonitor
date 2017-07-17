@@ -50,7 +50,7 @@ public class Controller {
         headingStop4.setFont(font);
         setUpThread();
         textFlowStop1.requestFocus();
-        System.out.println(textFlowStop1.isFocused());
+        if(__DEBUG)System.out.println(textFlowStop1.isFocused());
     }
 
     private void setUpThread() {
