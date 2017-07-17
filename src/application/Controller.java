@@ -190,7 +190,7 @@ public class Controller {
     
     @FXML
     public void handleInput(KeyEvent event) {
-    	System.out.println(event.getText());
+    	if(__DEBUG)System.out.println(event.getText());
     	if(event.isControlDown() && event.getText().equals("c")) System.exit(0);
     }
 
