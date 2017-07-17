@@ -19,6 +19,8 @@ import java.util.Properties;
 
 
 public class Controller {
+	private static final int FIRSTSTOP = 1, SECONDSTOP = 2, THIRDSTOP = 3, FOURTHSTOP = 4, UPDATEINTERVALL = 2000;
+	public static final boolean __DEBUG = false;
     @FXML TextFlow textFlowStop1, textFlowStop2, textFlowStop3, textFlowStop4;
     @FXML TextFlow textFlowLine1, textFlowLine2, textFlowLine3, textFlowLine4;
     @FXML TextFlow textFlowTime1, textFlowTime2, textFlowTime3, textFlowTime4;
@@ -30,6 +32,7 @@ public class Controller {
 
     @FXML
     public void initialize() throws IOException {
+    	URLReader.InitURLReader();
         font = Font.loadFont(getClass().getResource("/font/VRRR.ttf").toString(), 50);
         properties = getProperties();
         headingStop1.setText(properties.getProperty("firstStop_Name") + ":");
@@ -51,10 +54,10 @@ public class Controller {
             try {
                 while (true) {
                     loop(properties);
-                    Thread.sleep(1000);
+                    Thread.sleep(UPDATEINTERVALL);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                if(__DEBUG)e.printStackTrace();
             }
         };
         Thread t = new Thread(task);
@@ -62,10 +65,10 @@ public class Controller {
     }
 
     private void loop(Properties properties) throws IOException {
-        setUpTextOnTextFlow(textFlowLine1, textFlowStop1, textFlowTime1, 1);
-        setUpTextOnTextFlow(textFlowLine2, textFlowStop2, textFlowTime2, 2);
-        setUpTextOnTextFlow(textFlowLine3, textFlowStop3, textFlowTime3, 3);
-        setUpTextOnTextFlow(textFlowLine4, textFlowStop4, textFlowTime4, 4);
+        setUpTextOnTextFlow(textFlowLine1, textFlowStop1, textFlowTime1, FIRSTSTOP);
+        setUpTextOnTextFlow(textFlowLine2, textFlowStop2, textFlowTime2, SECONDSTOP);
+        setUpTextOnTextFlow(textFlowLine3, textFlowStop3, textFlowTime3, THIRDSTOP);
+        setUpTextOnTextFlow(textFlowLine4, textFlowStop4, textFlowTime4, FOURTHSTOP);
     }
 
 
@@ -73,37 +76,60 @@ public class Controller {
             IOException {
         String property;
         switch (stop) {
-            case 1:
+            case FIRSTSTOP:
                 property = "firstStop_URL";
                 break;
-            case 2:
+            case SECONDSTOP:
                 property = "secondStop_URL";
                 break;
-            case 3:
+            case THIRDSTOP:
                 property = "thirdStop_URL";
                 break;
-            case 4:
+            case FOURTHSTOP:
                 property = "fourthStop_URL";
                 break;
             default:
                 property = "";
                 break;
         }
-        Text[] text = optimizeLayout(HTMLparser.getInstance()
-                .parse(URLReader.getInstance()
-                        .read(new URL(properties
-                                .getProperty(property))), "div"));
+        Text[] text = optimizeLayout(HTMLparser.parse
+        		(URLReader.read
+        				(new URL(properties.getProperty
+        						(property))), "div"));
+        if(!text[2].getText().contains("min")) {
+        	switch (stop) {
+            case FIRSTSTOP:
+                property = "firstReplacement_URL";
+                break;
+            case SECONDSTOP:
+                property = "secondReplacement_URL";
+                break;
+            case THIRDSTOP:
+                property = "thirdReplacement_URL";
+                break;
+            case FOURTHSTOP:
+                property = "fourthReplacement_URL";
+                break;
+            default:
+                property = "";
+                break;
+        }
+        	text = optimizeLayout(HTMLparser.parse
+            		(URLReader.read
+            				(new URL(properties.getProperty
+            						(property))), "div"));
+        }
 
-
+        final Text[] finaltext = text;
         Platform.runLater(() -> {
             line.getChildren().clear();
-            line.getChildren().addAll(text[0]);
+            line.getChildren().addAll(finaltext[0]);
 
             flow.getChildren().clear();
-            flow.getChildren().addAll(text[1]);
+            flow.getChildren().addAll(finaltext[1]);
 
             time.getChildren().clear();
-            time.getChildren().addAll(text[2]);
+            time.getChildren().addAll(finaltext[2]);
         });
     }
 
@@ -139,6 +165,11 @@ public class Controller {
         for (Text t : text) {
             t.setFont(font);
             t.setFill(Color.rgb(0, 255, 1));
+        }
+        if(__DEBUG) {
+        	System.out.println(text[0].getText());
+        	System.out.println(text[1].getText());
+        	System.out.println(text[2].getText());
         }
         return text;
     }

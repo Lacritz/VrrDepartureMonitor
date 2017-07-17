@@ -9,17 +9,13 @@ import java.io.*;
 public class URLReader {
     private static URLReader urlReader;
 
-    private URLReader() {
+    public static void InitURLReader() {
         SSLUtilities.trustAllHostnames();
         SSLUtilities.trustAllHttpsCertificates();
     }
 
-    public static URLReader getInstance() {
-        if (URLReader.urlReader == null) urlReader = new URLReader();
-        return urlReader;
-    }
 
-    public String read(URL url) throws IOException {
+    public static String read(URL url) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
         String inputLine;
