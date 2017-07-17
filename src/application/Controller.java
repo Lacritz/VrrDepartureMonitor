@@ -3,6 +3,8 @@ package application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToolBar;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -24,7 +26,7 @@ public class Controller {
     @FXML TextFlow textFlowStop1, textFlowStop2, textFlowStop3, textFlowStop4;
     @FXML TextFlow textFlowLine1, textFlowLine2, textFlowLine3, textFlowLine4;
     @FXML TextFlow textFlowTime1, textFlowTime2, textFlowTime3, textFlowTime4;
-
+    
     @FXML Text headingStop1, headingStop2, headingStop3, headingStop4;
     @FXML ToolBar toolBar;
     Properties properties;
@@ -32,7 +34,7 @@ public class Controller {
 
     @FXML
     public void initialize() throws IOException {
-    	URLReader.InitURLReader();
+    	URLReader.initURLReader();
         font = Font.loadFont(getClass().getResource("/font/VRRR.ttf").toString(), 50);
         properties = getProperties();
         headingStop1.setText(properties.getProperty("firstStop_Name") + ":");
@@ -47,6 +49,8 @@ public class Controller {
         headingStop4.setText(properties.getProperty("fourthStop_Name") + ":");
         headingStop4.setFont(font);
         setUpThread();
+        textFlowStop1.requestFocus();
+        System.out.println(textFlowStop1.isFocused());
     }
 
     private void setUpThread() {
@@ -182,6 +186,12 @@ public class Controller {
         properties.load(new InputStreamReader(stream, Charset.forName("UTF-8")));
         stream.close();
         return properties;
+    }
+    
+    @FXML
+    public void handleInput(KeyEvent event) {
+    	System.out.println(event.getText());
+    	if(event.isControlDown() && event.getText().equals("c")) System.exit(0);
     }
 
 }

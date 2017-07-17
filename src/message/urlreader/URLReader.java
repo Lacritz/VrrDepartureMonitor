@@ -9,7 +9,7 @@ import java.io.*;
 public class URLReader {
     private static URLReader urlReader;
 
-    public static void InitURLReader() {
+    public static void initURLReader() {
         SSLUtilities.trustAllHostnames();
         SSLUtilities.trustAllHttpsCertificates();
     }
