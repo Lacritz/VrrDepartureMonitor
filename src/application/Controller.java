@@ -28,12 +28,11 @@ public class Controller {
     
     @FXML Text headingStop1, headingStop2, headingStop3, headingStop4;
     @FXML ToolBar toolBar;
-    Properties properties;
+    final Properties properties = getProperties();
     final Font font = Font.loadFont(getClass().getResource("/font/VRRR.ttf").toString(), 50);
     @FXML
     public void initialize() throws IOException {
     	URLReader.initURLReader();
-        properties = getProperties();
         headingStop1.setText(properties.getProperty("firstStop_Name") + ":");
         headingStop1.setFont(font);
 
@@ -54,7 +53,7 @@ public class Controller {
         Runnable task = () -> {
             try {
                 while (true) {
-                    loop(properties);
+                    loop();
                     Thread.sleep(UPDATEINTERVALL);
                 }
             } catch (Exception e) {
@@ -65,7 +64,7 @@ public class Controller {
         t.start();
     }
 
-    private void loop(Properties properties) throws IOException {
+    private void loop() throws IOException {
         setUpTextOnTextFlow(textFlowLine1, textFlowStop1, textFlowTime1, FIRSTSTOP);
         setUpTextOnTextFlow(textFlowLine2, textFlowStop2, textFlowTime2, SECONDSTOP);
         setUpTextOnTextFlow(textFlowLine3, textFlowStop3, textFlowTime3, THIRDSTOP);
@@ -176,12 +175,16 @@ public class Controller {
     }
 
 
-    private Properties getProperties() throws IOException {
+    private Properties getProperties(){
         Properties properties = new Properties();
         BufferedInputStream stream = new BufferedInputStream(this.getClass().getResourceAsStream
                 ("/properties/properties.prop"));
-        properties.load(new InputStreamReader(stream, Charset.forName("UTF-8")));
-        stream.close();
+        try {
+        	properties.load(new InputStreamReader(stream, Charset.forName("UTF-8")));
+        	stream.close();
+        }catch(Exception e) {
+        	if(__DEBUG)e.printStackTrace();
+        }
         return properties;
     }
     
