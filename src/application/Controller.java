@@ -29,12 +29,10 @@ public class Controller {
     @FXML Text headingStop1, headingStop2, headingStop3, headingStop4;
     @FXML ToolBar toolBar;
     Properties properties;
-    Font font;
-
+    final Font font = Font.loadFont(getClass().getResource("/font/VRRR.ttf").toString(), 50);
     @FXML
     public void initialize() throws IOException {
     	URLReader.initURLReader();
-        font = Font.loadFont(getClass().getResource("/font/VRRR.ttf").toString(), 50);
         properties = getProperties();
         headingStop1.setText(properties.getProperty("firstStop_Name") + ":");
         headingStop1.setFont(font);
