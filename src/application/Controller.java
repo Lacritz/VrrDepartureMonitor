@@ -1,23 +1,22 @@
 package application;
 
-import javafx.application.Platform;
-import javafx.fxml.FXML;
-import javafx.scene.control.ToolBar;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
-import message.parser.HTMLparser;
-import message.urlreader.URLReader;
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.Properties;
+
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.scene.control.ToolBar;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+import message.parser.HTMLparser;
+import message.urlreader.URLReader;
 
 
 public class Controller {

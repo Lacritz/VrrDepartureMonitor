@@ -1,7 +1,5 @@
 package message.parser;
 
-import java.nio.charset.Charset;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

@@ -12,9 +12,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import java.io.*;
-import java.util.Properties;
-
 
 public class Main extends Application {
 
