@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 import javafx.application.Platform;
@@ -26,6 +29,7 @@ public class Controller {
     @FXML TextFlow textFlowLine1, textFlowLine2, textFlowLine3, textFlowLine4;
     @FXML TextFlow textFlowTime1, textFlowTime2, textFlowTime3, textFlowTime4;
     
+    @FXML TextFlow dateFlow;
     @FXML Text headingStop1, headingStop2, headingStop3, headingStop4;
     @FXML ToolBar toolBar;
     final Properties properties = getProperties();
@@ -33,6 +37,7 @@ public class Controller {
     @FXML
     public void initialize() throws IOException {
     	URLReader.initURLReader();
+    	
         headingStop1.setText(properties.getProperty("firstStop_Name") + ":");
         headingStop1.setFont(font);
 
@@ -45,7 +50,6 @@ public class Controller {
         headingStop4.setText(properties.getProperty("fourthStop_Name") + ":");
         headingStop4.setFont(font);
         setUpThread();
-        textFlowStop1.requestFocus();
         if(__DEBUG)System.out.println(textFlowStop1.isFocused());
     }
 
@@ -65,6 +69,7 @@ public class Controller {
     }
 
     private void loop() throws IOException {
+    	updateTime();
         setUpTextOnTextFlow(textFlowLine1, textFlowStop1, textFlowTime1, FIRSTSTOP);
         setUpTextOnTextFlow(textFlowLine2, textFlowStop2, textFlowTime2, SECONDSTOP);
         setUpTextOnTextFlow(textFlowLine3, textFlowStop3, textFlowTime3, THIRDSTOP);
@@ -72,6 +77,18 @@ public class Controller {
     }
 
 
+    public void updateTime() {
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    	Date date = new Date();
+    	Text timetext = new Text(dateFormat.format(date));
+    	timetext.setFont(font);
+        timetext.setFill(Color.rgb(0, 255, 1));
+        Platform.runLater(() -> {
+	    	dateFlow.getChildren().clear();
+	    	dateFlow.getChildren().add(timetext);
+        });
+    	
+    }
     public void setUpTextOnTextFlow(TextFlow line, TextFlow flow, TextFlow time, int stop) throws
             IOException {
         String property;
@@ -187,11 +204,4 @@ public class Controller {
         }
         return properties;
     }
-    
-    @FXML
-    public void handleInput(KeyEvent event) {
-    	if(__DEBUG)System.out.println(event.getText());
-    	if(event.isControlDown() && event.getText().equals("c")) System.exit(0);
-    }
-
 }

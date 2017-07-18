@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#handleInput" prefHeight="1024.0" prefWidth="1280.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1280.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
-      <AnchorPane layoutX="62.0" layoutY="68.0" onKeyPressed="#handleInput" style="-fx-border-color: BLACK;" AnchorPane.bottomAnchor="497.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="640.0" AnchorPane.topAnchor="30.0">
+      <AnchorPane layoutX="62.0" layoutY="68.0" style="-fx-border-color: BLACK;" AnchorPane.bottomAnchor="497.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="640.0" AnchorPane.topAnchor="30.0">
          <children>
-            <TextFlow fx:id="textFlowStop1" focusTraversable="true" layoutX="211.0" layoutY="36.0" onKeyPressed="#handleInput" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="37.0" />
+            <TextFlow fx:id="textFlowStop1" focusTraversable="true" layoutX="211.0" layoutY="36.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="37.0" />
             <TextFlow fx:id="textFlowTime1" layoutX="304.0" layoutY="57.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="460.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="37.0" />
             <TextFlow fx:id="textFlowLine1" layoutY="37.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="510.0" AnchorPane.topAnchor="37.0" />
             <Text fx:id="headingStop1" fill="WHITE" fontSmoothingType="LCD" layoutX="6.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-=HALTESTELLE 1=-" textAlignment="CENTER" wrappingWidth="627.9999932292849" AnchorPane.bottomAnchor="465.28125" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0000067707151175" AnchorPane.topAnchor="-1.203125">
@@ -36,7 +36,7 @@
             </Separator>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="72.0" layoutY="78.0" mouseTransparent="true" onKeyPressed="#handleInput" style="-fx-border-color: BLACK;" AnchorPane.bottomAnchor="497.0" AnchorPane.leftAnchor="640.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+      <AnchorPane layoutX="72.0" layoutY="78.0" mouseTransparent="true" style="-fx-border-color: BLACK;" AnchorPane.bottomAnchor="497.0" AnchorPane.leftAnchor="640.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
          <children>
             <TextFlow fx:id="textFlowStop2" layoutX="125.0" layoutY="157.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="37.0" />
             <TextFlow fx:id="textFlowLine2" layoutX="-16.0" layoutY="139.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="510.0" AnchorPane.topAnchor="37.0" />
@@ -56,7 +56,7 @@
             </Separator>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="53.0" layoutY="455.0" mouseTransparent="true" onKeyPressed="#handleInput" style="-fx-border-color: BLACK;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="640.0" AnchorPane.topAnchor="527.0">
+      <AnchorPane layoutX="53.0" layoutY="455.0" mouseTransparent="true" style="-fx-border-color: BLACK;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="640.0" AnchorPane.topAnchor="527.0">
          <children>
             <TextFlow fx:id="textFlowStop3" layoutX="141.0" layoutY="185.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="37.0" />
             <TextFlow fx:id="textFlowLine3" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="510.0" AnchorPane.topAnchor="37.0" />
@@ -76,7 +76,7 @@
             </Separator>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="63.0" layoutY="465.0" mouseTransparent="true" onKeyPressed="#handleInput" style="-fx-border-color: BLACK;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="640.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="527.0">
+      <AnchorPane layoutX="63.0" layoutY="465.0" mouseTransparent="true" style="-fx-border-color: BLACK;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="640.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="527.0">
          <children>
             <TextFlow fx:id="textFlowStop4" layoutX="141.0" layoutY="185.0" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="37.0" />
             <TextFlow fx:id="textFlowLine4" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="510.0" AnchorPane.topAnchor="37.0" />
@@ -96,11 +96,11 @@
             </Separator>
          </children>
       </AnchorPane>
-      <ToolBar maxHeight="30.0" minHeight="30.0" prefHeight="30.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <effect>
-            <DropShadow />
-         </effect>
-      </ToolBar>
+      <AnchorPane prefHeight="32.0" prefWidth="1280.0">
+         <children>
+            <TextFlow fx:id="dateFlow" prefHeight="32.0" prefWidth="1280.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
    </children>
    <cursor>
       <Cursor fx:constant="DISAPPEAR" />
