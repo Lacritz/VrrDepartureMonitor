@@ -10,10 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToolBar;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -23,7 +21,9 @@ import message.urlreader.URLReader;
 
 
 public class Controller {
-	private static final int FIRSTSTOP = 1, SECONDSTOP = 2, THIRDSTOP = 3, FOURTHSTOP = 4, UPDATEINTERVALL = 2000;
+	private static final int FIRSTSTOP = 1, SECONDSTOP = 2, THIRDSTOP = 3, FOURTHSTOP = 4, UPDATEINTERVALL = 2000, TIMEUPDATEINTERVALL = 250;
+	private static final Color TEXTCOLOR = Color.rgb(0, 255, 0);
+	private static final DateFormat DATEFORMAT = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	public static final boolean __DEBUG = false;
     @FXML TextFlow textFlowStop1, textFlowStop2, textFlowStop3, textFlowStop4;
     @FXML TextFlow textFlowLine1, textFlowLine2, textFlowLine3, textFlowLine4;
@@ -31,12 +31,43 @@ public class Controller {
     
     @FXML TextFlow dateFlow;
     @FXML Text headingStop1, headingStop2, headingStop3, headingStop4;
-    @FXML ToolBar toolBar;
-    final Properties properties = getProperties();
-    final Font font = Font.loadFont(getClass().getResource("/font/VRRR.ttf").toString(), 50);
+    private final Text timeText = new Text(), 
+    		stop1LineText = new Text(),
+    		stop1StopText = new Text(),
+			stop1TimeText = new Text(),
+			stop2LineText = new Text(),
+    		stop2StopText = new Text(),
+			stop2TimeText = new Text(),
+			stop3LineText = new Text(),
+    		stop3StopText = new Text(),
+			stop3TimeText = new Text(),
+			stop4LineText = new Text(),
+    		stop4StopText = new Text(),
+			stop4TimeText = new Text();
+    private final Text[] tarray = {	stop1LineText, 
+			stop1StopText,
+			stop1TimeText,
+			stop2LineText, 
+			stop2StopText,
+			stop2TimeText,
+			stop3LineText, 
+			stop3StopText,
+			stop3TimeText,
+			stop4LineText, 
+			stop4StopText,
+			stop4TimeText,
+			timeText	};
+    private final Properties properties = getProperties();
+    private final Font font = Font.loadFont(getClass().getResource("/font/VRRR.ttf").toString(), 50);
     @FXML
     public void initialize() throws IOException {
     	URLReader.initURLReader();
+    	setUpHeadlines();
+        setUpTexts();
+        setUpThread();
+    }
+    
+    private void setUpHeadlines() {
     	
         headingStop1.setText(properties.getProperty("firstStop_Name") + ":");
         headingStop1.setFont(font);
@@ -49,8 +80,29 @@ public class Controller {
 
         headingStop4.setText(properties.getProperty("fourthStop_Name") + ":");
         headingStop4.setFont(font);
-        setUpThread();
-        if(__DEBUG)System.out.println(textFlowStop1.isFocused());
+        
+    	
+    }
+    
+    private void setUpTexts() {
+    	
+        for (Text t : tarray) {
+            t.setFont(font);
+            t.setFill(TEXTCOLOR);
+        }
+    	dateFlow.getChildren().add(timeText);
+        textFlowLine1.getChildren().addAll(stop1LineText);
+        textFlowStop1.getChildren().addAll(stop1StopText);
+        textFlowTime1.getChildren().addAll(stop1TimeText);
+        textFlowLine2.getChildren().addAll(stop2LineText);
+        textFlowStop2.getChildren().addAll(stop2StopText);
+        textFlowTime2.getChildren().addAll(stop2TimeText);
+        textFlowLine3.getChildren().addAll(stop3LineText);
+        textFlowStop3.getChildren().addAll(stop3StopText);
+        textFlowTime3.getChildren().addAll(stop3TimeText);
+        textFlowLine4.getChildren().addAll(stop4LineText);
+        textFlowStop4.getChildren().addAll(stop4StopText);
+        textFlowTime4.getChildren().addAll(stop4TimeText);
     }
 
     private void setUpThread() {
@@ -64,32 +116,35 @@ public class Controller {
                 if(__DEBUG)e.printStackTrace();
             }
         };
+        Runnable timeTask = () -> {
+            try {
+                while (true) {
+                	updateTime();
+                    Thread.sleep(TIMEUPDATEINTERVALL);
+                }
+            } catch (Exception e) {
+                if(__DEBUG)e.printStackTrace();
+            }
+        };
         Thread t = new Thread(task);
         t.start();
+        Thread t2 = new Thread(timeTask);
+        t2.start();
     }
 
     private void loop() throws IOException {
-    	updateTime();
-        setUpTextOnTextFlow(textFlowLine1, textFlowStop1, textFlowTime1, FIRSTSTOP);
-        setUpTextOnTextFlow(textFlowLine2, textFlowStop2, textFlowTime2, SECONDSTOP);
-        setUpTextOnTextFlow(textFlowLine3, textFlowStop3, textFlowTime3, THIRDSTOP);
-        setUpTextOnTextFlow(textFlowLine4, textFlowStop4, textFlowTime4, FOURTHSTOP);
+        setUpTextOnTextFlow(stop1LineText, stop1StopText, stop1TimeText, FIRSTSTOP);
+        setUpTextOnTextFlow(stop2LineText, stop2StopText, stop2TimeText, SECONDSTOP);
+        setUpTextOnTextFlow(stop3LineText, stop3StopText, stop3TimeText, THIRDSTOP);
+        setUpTextOnTextFlow(stop4LineText, stop4StopText, stop4TimeText, FOURTHSTOP);
     }
 
 
     public void updateTime() {
-    	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     	Date date = new Date();
-    	Text timetext = new Text(dateFormat.format(date));
-    	timetext.setFont(font);
-        timetext.setFill(Color.rgb(0, 255, 1));
-        Platform.runLater(() -> {
-	    	dateFlow.getChildren().clear();
-	    	dateFlow.getChildren().add(timetext);
-        });
-    	
+    	timeText.setText(DATEFORMAT.format(date));
     }
-    public void setUpTextOnTextFlow(TextFlow line, TextFlow flow, TextFlow time, int stop) throws
+    public void setUpTextOnTextFlow(Text line, Text flow, Text time, int stop) throws
             IOException {
         String property;
         switch (stop) {
@@ -109,11 +164,11 @@ public class Controller {
                 property = "";
                 break;
         }
-        Text[] text = optimizeLayout(HTMLparser.parse
+        String[] text = optimizeLayout(HTMLparser.parse
         		(URLReader.read
         				(new URL(properties.getProperty
         						(property))), "div"));
-        if(!text[2].getText().contains("min")) {
+        if(!text[2].contains("min")) {
         	switch (stop) {
             case FIRSTSTOP:
                 property = "firstReplacement_URL";
@@ -136,22 +191,13 @@ public class Controller {
             				(new URL(properties.getProperty
             						(property))), "div"));
         }
-
-        final Text[] finaltext = text;
-        Platform.runLater(() -> {
-            line.getChildren().clear();
-            line.getChildren().addAll(finaltext[0]);
-
-            flow.getChildren().clear();
-            flow.getChildren().addAll(finaltext[1]);
-
-            time.getChildren().clear();
-            time.getChildren().addAll(finaltext[2]);
-        });
+        line.setText(text[0]);
+        flow.setText(text[1]);
+        time.setText(text[2]);
     }
 
 
-    private Text[] optimizeLayout(String s) {
+    private String[] optimizeLayout(String s) {
         String out = Charset.forName("UTF-8").decode(Charset.defaultCharset().encode(s)).toString();
 
         String line = "";
@@ -171,22 +217,18 @@ public class Controller {
             }
         }
 
-        Text[] text = new Text[3];
-        text[0] = new Text(line);
-        text[1] = new Text(stop);
-        text[2] = new Text(time);
+        String[] text = new String[3];
+        text[0] = line;
+        text[1] = stop;
+        text[2] = time;
 
 
 
-        text[0].setFill(Color.WHITE);
-        for (Text t : text) {
-            t.setFont(font);
-            t.setFill(Color.rgb(0, 255, 1));
-        }
+        
         if(__DEBUG) {
-        	System.out.println(text[0].getText());
-        	System.out.println(text[1].getText());
-        	System.out.println(text[2].getText());
+        	System.out.println(text[0]);
+        	System.out.println(text[1]);
+        	System.out.println(text[2]);
         }
         return text;
     }

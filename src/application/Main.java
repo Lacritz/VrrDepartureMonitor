@@ -32,6 +32,7 @@ public class Main extends Application {
 
         root.setFocusTraversable(true);
         root.requestFocus();
+        root.requestLayout();
     }
 
     public void handleExit(KeyEvent event) {
