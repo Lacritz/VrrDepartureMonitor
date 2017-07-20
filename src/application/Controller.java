@@ -194,6 +194,9 @@ public class Controller {
         line.setText(text[0]);
         flow.setText(text[1]);
         time.setText(text[2]);
+        line.getParent().requestLayout();
+        flow.getParent().requestLayout();
+        time.getParent().requestLayout();
     }
 
 
