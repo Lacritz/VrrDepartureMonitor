@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToolBar;
 import javafx.scene.paint.Color;
@@ -142,7 +143,11 @@ public class Controller {
 
     public void updateTime() {
     	Date date = new Date();
-    	timeText.setText(DATEFORMAT.format(date));
+    	Platform.runLater(new Runnable() {
+			public void run() {
+				timeText.setText(DATEFORMAT.format(date));
+			}
+		});
     }
     public void setUpTextOnTextFlow(Text line, Text flow, Text time, int stop) throws
             IOException {
@@ -191,12 +196,15 @@ public class Controller {
             				(new URL(properties.getProperty
             						(property))), "div"));
         }
-        line.setText(text[0]);
-        flow.setText(text[1]);
-        time.setText(text[2]);
-        line.getParent().requestLayout();
-        flow.getParent().requestLayout();
-        time.getParent().requestLayout();
+        final String[] finalText = text;
+        Platform.runLater(new Runnable() {
+			public void run() {
+				line.setText(finalText[0]);
+		        flow.setText(finalText[1]);
+		        time.setText(finalText[2]);
+		        
+			}
+		});
     }
 
 
