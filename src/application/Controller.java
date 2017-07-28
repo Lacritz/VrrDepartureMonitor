@@ -24,7 +24,7 @@ import message.urlreader.URLReader;
 public class Controller {
 	private static final int FIRSTSTOP = 1, SECONDSTOP = 2, THIRDSTOP = 3, FOURTHSTOP = 4, UPDATEINTERVALL = 2000, TIMEUPDATEINTERVALL = 250;
 	private static final Color TEXTCOLOR = Color.rgb(0, 255, 0);
-	private static final DateFormat DATEFORMAT = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	private static final DateFormat DATEFORMAT = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	public static final boolean __DEBUG = false;
     @FXML TextFlow textFlowStop1, textFlowStop2, textFlowStop3, textFlowStop4;
     @FXML TextFlow textFlowLine1, textFlowLine2, textFlowLine3, textFlowLine4;
@@ -216,13 +216,14 @@ public class Controller {
         String time = "";
         for (String string : out.split("\n")) {
             try {
-                line += string.split("#")[1] + "\n";
-                if (!(string.split("#")[2].length() <= 17)) {
-                    stop += string.split("#")[2].substring(0, 17) + "\n";
+            	final String[] lineStopTime = string.split("#");
+                line += lineStopTime[1] + "\n";
+                if (!(lineStopTime[2].length() <= 17)) {
+                    stop += lineStopTime[2].substring(0, 17) + "\n";
                 } else {
-                    stop += string.split("#")[2] + "\n";
+                    stop += lineStopTime[2] + "\n";
                 }
-                time += string.split("#")[3] + "\n";
+                time += lineStopTime[3] + "\n";
             } catch (ArrayIndexOutOfBoundsException e) {
                 continue;
             }
