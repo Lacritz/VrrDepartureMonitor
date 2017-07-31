@@ -7,7 +7,6 @@ import java.net.URL;
 
 
 public class URLReader {
-    private static URLReader urlReader;
 
     public static void initURLReader() {
         SSLUtilities.trustAllHostnames();
@@ -17,13 +16,8 @@ public class URLReader {
 
     public static String read(URL url) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-
-        String inputLine;
         String message = "";
-        while ((inputLine = in.readLine()) != null) {
-            message += inputLine;
-        }
-
+        message = in.lines().reduce("", (String a, String b) -> {return a+b;});
         in.close();
         return message;
     }

@@ -12,7 +12,6 @@ import java.util.Properties;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.ToolBar;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
