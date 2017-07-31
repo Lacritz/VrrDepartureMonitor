@@ -17,7 +17,7 @@ public class URLReader {
     public static String read(URL url) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
         String message = "";
-        message = in.lines().reduce("", (String a, String b) -> {return a+b;});
+        message = in.lines().reduce("", String::concat);
         in.close();
         return message;
     }
