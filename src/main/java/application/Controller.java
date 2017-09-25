@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.Properties;
 
 import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -25,6 +27,64 @@ public class Controller {
 	private static final Color TEXTCOLOR = Color.rgb(0, 255, 0);
 	private static final DateFormat DATEFORMAT = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	public static final boolean __DEBUG = false;
+	
+	Service<Void> screenService = new Service<Void>() {
+    	@Override
+        protected Task<Void> createTask() {
+    		return new Task<Void>() {
+    			 @Override 
+    			 protected Void call() throws Exception {
+        			 try {
+     	                while (true) {
+     	                    loop();
+     	                    Thread.sleep(UPDATEINTERVALL);
+     	                }
+     	            } catch (Exception e) {
+     	                if(__DEBUG)e.printStackTrace();
+     	               Platform.runLater(new Runnable() {
+							
+							@Override
+							public void run() {
+								screenService.restart();
+							}
+						});
+     	            }
+        			return null;
+    			 }
+    			
+			};
+    	}
+    };
+    
+    Service<Void> timeService = new Service<Void>() {
+    	@Override
+        protected Task<Void> createTask() {
+    		return new Task<Void>() {
+    			 @Override 
+    			 protected Void call() throws Exception {
+        			 try {
+     	                while (true) {
+     	                	updateTime();
+     	                    Thread.sleep(TIMEUPDATEINTERVALL);
+     	                }
+     	            } catch (Exception e) {
+     	                if(__DEBUG)e.printStackTrace();
+     	                Platform.runLater(new Runnable() {
+							
+							@Override
+							public void run() {
+								timeService.restart();
+							}
+						});
+     	            }
+        			return null;
+    			 }
+    			
+			};
+    	}
+    };
+    
+	
     @FXML TextFlow textFlowStop1, textFlowStop2, textFlowStop3, textFlowStop4;
     @FXML TextFlow textFlowLine1, textFlowLine2, textFlowLine3, textFlowLine4;
     @FXML TextFlow textFlowTime1, textFlowTime2, textFlowTime3, textFlowTime4;
@@ -106,30 +166,10 @@ public class Controller {
     }
 
     private void setUpThread() {
-        Runnable task = () -> {
-            try {
-                while (true) {
-                    loop();
-                    Thread.sleep(UPDATEINTERVALL);
-                }
-            } catch (Exception e) {
-                if(__DEBUG)e.printStackTrace();
-            }
-        };
-        Runnable timeTask = () -> {
-            try {
-                while (true) {
-                	updateTime();
-                    Thread.sleep(TIMEUPDATEINTERVALL);
-                }
-            } catch (Exception e) {
-                if(__DEBUG)e.printStackTrace();
-            }
-        };
-        Thread t = new Thread(task);
-        t.start();
-        Thread t2 = new Thread(timeTask);
-        t2.start();
+        
+
+        screenService.start();
+        timeService.start();
     }
 
     private void loop() throws IOException {
