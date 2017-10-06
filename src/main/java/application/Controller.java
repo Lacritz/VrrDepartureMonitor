@@ -27,6 +27,7 @@ public class Controller {
 	private static final Color TEXTCOLOR = Color.rgb(0, 255, 0);
 	private static final DateFormat DATEFORMAT = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	public static final boolean __DEBUG = false;
+	private static Date[] lastupdate = new Date[4];
 	
 	Service<Void> screenService = new Service<Void>() {
     	@Override
@@ -88,7 +89,7 @@ public class Controller {
     @FXML TextFlow textFlowStop1, textFlowStop2, textFlowStop3, textFlowStop4;
     @FXML TextFlow textFlowLine1, textFlowLine2, textFlowLine3, textFlowLine4;
     @FXML TextFlow textFlowTime1, textFlowTime2, textFlowTime3, textFlowTime4;
-    
+    @FXML TextFlow errorFlow;
     @FXML TextFlow dateFlow;
     @FXML Text headingStop1, headingStop2, headingStop3, headingStop4;
     private final Text timeText = new Text(), 
@@ -103,7 +104,8 @@ public class Controller {
 			stop3TimeText = new Text(),
 			stop4LineText = new Text(),
     		stop4StopText = new Text(),
-			stop4TimeText = new Text();
+			stop4TimeText = new Text(),
+			errorText	  = new Text();
     private final Text[] tarray = {	stop1LineText, 
 			stop1StopText,
 			stop1TimeText,
@@ -116,7 +118,8 @@ public class Controller {
 			stop4LineText, 
 			stop4StopText,
 			stop4TimeText,
-			timeText	};
+			timeText	 ,
+			errorText	};
     private final Properties properties = getProperties();
     private final Font font = Font.loadFont(getClass().getResource("/font/VRRR.ttf").toString(), 50);
     @FXML
@@ -150,7 +153,9 @@ public class Controller {
             t.setFont(font);
             t.setFill(TEXTCOLOR);
         }
+        errorText.setFill(Color.RED);
     	dateFlow.getChildren().add(timeText);
+    	errorFlow.getChildren().add(errorText);
         textFlowLine1.getChildren().addAll(stop1LineText);
         textFlowStop1.getChildren().addAll(stop1StopText);
         textFlowTime1.getChildren().addAll(stop1TimeText);
@@ -208,10 +213,49 @@ public class Controller {
                 property = "";
                 break;
         }
-        String[] text = optimizeLayout(HTMLparser.parse
+        String[] text = new String[3];
+        try{
+        text = optimizeLayout(HTMLparser.parse
         		(URLReader.read
         				(new URL(properties.getProperty
         						(property))), "div"));
+        lastupdate[stop - 1] = new Date();
+        Platform.runLater(new Runnable() {
+			public void run() {
+				errorText.setText("");    		        
+			}
+		});
+        }catch(Exception e) {
+        	Platform.runLater(new Runnable() {
+    			public void run() {
+    				errorText.setText("Connection Error");    		        
+    			}
+    		});
+        	long ellapsedTime = (long)((new Date().getTime() - lastupdate[stop - 1].getTime())/60000.);
+        	if(ellapsedTime>0)
+        		lastupdate[stop - 1] = new Date();
+        	String[] minutesToWait = time.getText().split("\n");
+        	String[] newTime = new String[minutesToWait.length];
+        	for (int i = 0; i< minutesToWait.length; i++) {
+        		String t =  minutesToWait[i];
+				if(t.contains("min")) {
+					long newMinutes = (Integer.parseInt(t.split(" ")[0]) - ellapsedTime);
+					newTime[i] = newMinutes > 0 ?String.valueOf(newMinutes):"";
+				}else
+					newTime[i] = "";
+			}
+        	String newText[] = new String[minutesToWait.length];
+        	for (int i = 0; i < newTime.length; i++) {
+				String t = newTime[i];
+				if(t != "")
+					newText[i] = t + " min";
+				else
+					newText[i] = "Sofort";
+			}
+        	text[0] = line.getText();
+        	text[1] = flow.getText();
+        	text[2] = String.join("\n", newText);
+        }
         if(!text[2].contains("min")) {
         	switch (stop) {
             case FIRSTSTOP:

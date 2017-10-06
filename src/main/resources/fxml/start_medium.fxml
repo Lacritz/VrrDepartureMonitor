@@ -98,7 +98,8 @@
       </AnchorPane>
       <AnchorPane prefHeight="32.0" prefWidth="1280.0">
          <children>
-            <TextFlow fx:id="dateFlow" prefHeight="32.0" prefWidth="1280.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <TextFlow fx:id="dateFlow" prefHeight="32.0" prefWidth="1280.0" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="0.0" />
+            <TextFlow fx:id="errorFlow" layoutX="1023.0" layoutY="7.0" prefHeight="32.0" prefWidth="400.0" textAlignment="CENTER" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
    </children>
