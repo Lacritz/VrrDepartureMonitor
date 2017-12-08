@@ -225,36 +225,66 @@ public class Controller {
 				errorText.setText("");    		        
 			}
 		});
-        }catch(Exception e) {
-        	Platform.runLater(new Runnable() {
-    			public void run() {
-    				errorText.setText("Connection Error");    		        
-    			}
-    		});
-        	long ellapsedTime = (long)((new Date().getTime() - lastupdate[stop - 1].getTime())/60000.);
-        	if(ellapsedTime>0)
-        		lastupdate[stop - 1] = new Date();
-        	String[] minutesToWait = time.getText().split("\n");
-        	String[] newTime = new String[minutesToWait.length];
-        	for (int i = 0; i< minutesToWait.length; i++) {
-        		String t =  minutesToWait[i];
-				if(t.contains("min")) {
-					long newMinutes = (Integer.parseInt(t.split(" ")[0]) - ellapsedTime);
-					newTime[i] = newMinutes > 0 ?String.valueOf(newMinutes):"";
-				}else
-					newTime[i] = "";
-			}
-        	String newText[] = new String[minutesToWait.length];
-        	for (int i = 0; i < newTime.length; i++) {
-				String t = newTime[i];
-				if(t != "")
-					newText[i] = t + " min";
-				else
-					newText[i] = "Sofort";
-			}
-        	text[0] = line.getText();
-        	text[1] = flow.getText();
-        	text[2] = String.join("\n", newText);
+        }catch(Exception pass) {
+        	switch (stop) {
+            case FIRSTSTOP:
+                property = "firstReplacement_URL";
+                break;
+            case SECONDSTOP:
+                property = "secondReplacement_URL";
+                break;
+            case THIRDSTOP:
+                property = "thirdReplacement_URL";
+                break;
+            case FOURTHSTOP:
+                property = "fourthReplacement_URL";
+                break;
+            default:
+                property = "";
+                break;
+        	}
+        	try{
+                text = optimizeLayout(HTMLparser.parse
+                		(URLReader.read
+                				(new URL(properties.getProperty
+                						(property))), "div"));
+                lastupdate[stop - 1] = new Date();
+                Platform.runLater(new Runnable() {
+        			public void run() {
+        				errorText.setText("");    		        
+        			}
+        		});
+            }catch(Exception e) {
+	        	Platform.runLater(new Runnable() {
+	    			public void run() {
+	    				errorText.setText("Connection Error");    		        
+	    			}
+	    		});
+	        	long ellapsedTime = (long)((new Date().getTime() - lastupdate[stop - 1].getTime())/60000.);
+	        	if(ellapsedTime>0)
+	        		lastupdate[stop - 1] = new Date();
+	        	String[] minutesToWait = time.getText().split("\n");
+	        	String[] newTime = new String[minutesToWait.length];
+	        	for (int i = 0; i< minutesToWait.length; i++) {
+	        		String t =  minutesToWait[i];
+					if(t.contains("min")) {
+						long newMinutes = (Integer.parseInt(t.split(" ")[0]) - ellapsedTime);
+						newTime[i] = newMinutes > 0 ?String.valueOf(newMinutes):"";
+					}else
+						newTime[i] = "";
+				}
+	        	String newText[] = new String[minutesToWait.length];
+	        	for (int i = 0; i < newTime.length; i++) {
+					String t = newTime[i];
+					if(t != "")
+						newText[i] = t + " min";
+					else
+						newText[i] = "Sofort";
+				}
+	        	text[0] = line.getText();
+	        	text[1] = flow.getText();
+	        	text[2] = String.join("\n", newText);
+                }
         }
         if(!text[2].contains("min")) {
         	switch (stop) {
@@ -274,10 +304,48 @@ public class Controller {
                 property = "";
                 break;
         }
+        	try{
         	text = optimizeLayout(HTMLparser.parse
             		(URLReader.read
             				(new URL(properties.getProperty
             						(property))), "div"));
+        	lastupdate[stop - 1] = new Date();
+            Platform.runLater(new Runnable() {
+    			public void run() {
+    				errorText.setText("");    		        
+    			}
+    		});
+            }catch(Exception e) {
+            	Platform.runLater(new Runnable() {
+        			public void run() {
+        				errorText.setText("Connection Error");    		        
+        			}
+        		});
+            	long ellapsedTime = (long)((new Date().getTime() - lastupdate[stop - 1].getTime())/60000.);
+            	if(ellapsedTime>0)
+            		lastupdate[stop - 1] = new Date();
+            	String[] minutesToWait = time.getText().split("\n");
+            	String[] newTime = new String[minutesToWait.length];
+            	for (int i = 0; i< minutesToWait.length; i++) {
+            		String t =  minutesToWait[i];
+    				if(t.contains("min")) {
+    					long newMinutes = (Integer.parseInt(t.split(" ")[0]) - ellapsedTime);
+    					newTime[i] = newMinutes > 0 ?String.valueOf(newMinutes):"";
+    				}else
+    					newTime[i] = "";
+    			}
+            	String newText[] = new String[minutesToWait.length];
+            	for (int i = 0; i < newTime.length; i++) {
+    				String t = newTime[i];
+    				if(t != "")
+    					newText[i] = t + " min";
+    				else
+    					newText[i] = "Sofort";
+    			}
+            	text[0] = line.getText();
+            	text[1] = flow.getText();
+            	text[2] = String.join("\n", newText);
+            }
         }
         final String[] finalText = text;
         Platform.runLater(new Runnable() {
