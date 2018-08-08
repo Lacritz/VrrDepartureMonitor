@@ -1,7 +1,5 @@
 package message.parser;
 
-import java.nio.charset.Charset;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -13,17 +11,7 @@ import org.jsoup.select.Elements;
  */
 public class HTMLparser {
 
-    private static HTMLparser htmLparser;
-
-    private HTMLparser() {
-    }
-
-    public static HTMLparser getInstance() {
-        if (HTMLparser.htmLparser == null) htmLparser = new HTMLparser();
-        return htmLparser;
-    }
-
-    public String parse(String html, String cssQuery) {
+    public static String parse(String html, String cssQuery) {
         Document document = Jsoup.parse(html);
         Elements elements = document.select(cssQuery);
         String parsedHTML = "";
